@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A10 Cookie Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Cookie Demo</h1>
+<p id="output"></p>
+
+<button onclick="setCookie()">Set Cookie</button>
+
+<script>
+function setCookie() {
+    let username = "StudentUser";
+    let d = new Date();
+    d.setTime(d.getTime() + (7*24*60*60*1000)); // 7 days
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = "username=" + username + ";" + expires + ";path=/";
+    alert("Cookie has been set!");
+}
+
+function getCookie(name) {
+    let cname = name + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(cname) == 0) {
+            return c.substring(cname.length, c.length);
+        }
+    }
+    return "";
+}
+
+function displayCookie() {
+    let user = getCookie("username");
+    if (user != "") {
+        document.getElementById("output").innerHTML =
+            "Welcome back, " + user + "!";
+    } else {
+        document.getElementById("output").innerHTML =
+            "No cookie found. Click the button to set one.";
+    }
+}
+
+displayCookie();
+</script>
+
+<footer>
+    <p>© 2026 Ayaan Awais - A10 4/14/26</p>
+</footer>
+
+</body>
+</html>
