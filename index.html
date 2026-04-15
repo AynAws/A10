@@ -24,7 +24,7 @@
 
 <script>
 function setCookie() {
-    let username = prompt("Enter username");
+    let username = prompt("Enter username", "Harry Potter");
     let d = new Date();
     d.setTime(d.getTime() + (7*24*60*60*1000)); // 7 days
     let expires = "expires=" + d.toUTCString();
